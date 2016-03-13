@@ -18,6 +18,7 @@ jasmine.getFixtures().appendLoad("basic-separate.html");
 jasmine.getFixtures().appendLoad("basic-diacritics.html");
 jasmine.getFixtures().appendLoad("basic-synonyms.html");
 jasmine.getFixtures().appendLoad("nested.html");
+jasmine.getFixtures().appendLoad("iframe.html");
 
 // check environment
 describe("environment", function(){
@@ -344,4 +345,22 @@ describe("nested highlight removal by element", function(){
 		expect($items.length).toBe(0);
 	});
 	
+});
+
+describe("iframe", function(){
+
+	var instance = $(".iframe").jmHighlight("domain", {
+		"element": "span",
+		"className": "customHighlight",
+		"separateWordSearch": false,
+		"diacritics": false
+	});
+	var $items = $(".iframe span.customHighlight");
+
+	it("should return true", function(){
+		expect(instance).toBe(true);
+	});
+	it("should highlight 2 matches, not going into iframe", function(){
+		expect($items.length).toBe(2);
+	});
 });
